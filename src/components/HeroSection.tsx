@@ -71,7 +71,7 @@ export default function HeroSection({ onStartWriting }: HeroSectionProps) {
               <span className="text-vermillion-500 font-bold" aria-hidden="true">✓</span> Rapid Drafting
             </span>
             <span className="flex items-center gap-1.5">
-              <span className="text-mustard-600 font-bold" aria-hidden="true">✓</span> Draft Polishing
+              <span className="text-mustard-700 font-bold" aria-hidden="true">✓</span> Draft Polishing
             </span>
             <span className="flex items-center gap-1.5">
               <span className="text-sage-600 font-bold" aria-hidden="true">✓</span> Tone Audit
@@ -109,7 +109,7 @@ export default function HeroSection({ onStartWriting }: HeroSectionProps) {
                 </div>
               </div>
 
-              <span className="px-2.5 py-1 rounded bg-mustard-100 text-mustard-600 text-[11px] font-semibold tracking-wide uppercase border border-mustard-500/20">
+              <span className="px-2.5 py-1 rounded bg-mustard-100 text-mustard-700 text-[11px] font-semibold tracking-wide uppercase border border-mustard-500/30">
                 Draft Ready
               </span>
             </div>

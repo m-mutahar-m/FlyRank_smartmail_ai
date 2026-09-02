@@ -242,9 +242,9 @@ export default function Home() {
                   </p>
                 </div>
               </div>
-              <div className="mt-6 pt-4 border-t border-paper-subtle flex items-center justify-between text-xs text-ink-500 font-medium">
+              <div className="mt-6 pt-4 border-t border-paper-subtle flex items-center justify-between text-xs text-ink-700 font-medium">
                 <span>Draft Enhancement</span>
-                <span className="text-mustard-600 font-semibold group-hover:translate-x-1 transition-transform duration-200">
+                <span className="text-mustard-700 font-semibold group-hover:translate-x-1 transition-transform duration-200">
                   Ready &rarr;
                 </span>
               </div>
