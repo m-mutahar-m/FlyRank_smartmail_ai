@@ -51,7 +51,7 @@ export default function Header() {
             <span className="font-serif font-bold text-2xl tracking-tight text-ink-900 group-hover:text-vermillion-600 transition-colors">
               SmartMail <span className="text-vermillion-500 font-normal italic">Studio</span>
             </span>
-            <p className="text-[11px] text-ink-500 tracking-wider uppercase font-semibold">
+            <p className="text-[11px] text-ink-700 tracking-wider uppercase font-semibold">
               AI Email Companion
             </p>
           </div>
@@ -128,7 +128,7 @@ export default function Header() {
               </li>
             ))}
           </ul>
-          <div className="pt-3 border-t border-paper-border flex items-center justify-between text-xs text-ink-500">
+          <div className="pt-3 border-t border-paper-border flex items-center justify-between text-xs text-ink-700">
             <span>Mail System Operational</span>
             <span className="px-2 py-0.5 rounded bg-sage-100 text-sage-600 font-semibold uppercase">
               v0.1.0

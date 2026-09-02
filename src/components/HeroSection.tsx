@@ -16,7 +16,7 @@ export default function HeroSection({ onStartWriting }: HeroSectionProps) {
           {/* Editorial Badge */}
           <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-paper-subtle border border-paper-border text-xs font-medium text-ink-700 shadow-sm">
             <span className="w-2 h-2 rounded-full bg-vermillion-500" aria-hidden="true" />
-            <span className="font-semibold uppercase tracking-wider text-[11px] text-ink-500">
+            <span className="font-semibold uppercase tracking-wider text-[11px] text-ink-700">
               SmartMail Studio
             </span>
             <span className="text-paper-border-dark" aria-hidden="true">|</span>
@@ -66,7 +66,7 @@ export default function HeroSection({ onStartWriting }: HeroSectionProps) {
           </div>
 
           {/* Micro Feature Bullet Details */}
-          <div className="pt-4 flex flex-wrap items-center gap-6 text-xs text-ink-500 border-t border-paper-border/70">
+          <div className="pt-4 flex flex-wrap items-center gap-6 text-xs text-ink-700 border-t border-paper-border/70">
             <span className="flex items-center gap-1.5">
               <span className="text-vermillion-500 font-bold" aria-hidden="true">✓</span> Rapid Drafting
             </span>
@@ -103,7 +103,7 @@ export default function HeroSection({ onStartWriting }: HeroSectionProps) {
                   <span className="text-xs font-serif font-bold text-ink-900 block">
                     Mail Studio Dispatch
                   </span>
-                  <span className="text-[11px] text-ink-500 uppercase tracking-wider font-semibold">
+                  <span className="text-[11px] text-ink-700 uppercase tracking-wider font-semibold">
                     Postmark #01
                   </span>
                 </div>
@@ -116,24 +116,24 @@ export default function HeroSection({ onStartWriting }: HeroSectionProps) {
 
             {/* Sample Stationery Note Preview */}
             <div className="bg-paper-subtle/70 border border-paper-border rounded-xl p-4 space-y-3 relative postmark-texture">
-              <div className="flex items-center justify-between text-xs text-ink-500 font-mono">
+              <div className="flex items-center justify-between text-xs text-ink-700 font-mono">
                 <span>To: Recipient</span>
                 <span>Subj: Follow-up</span>
               </div>
               <p className="text-sm font-serif text-ink-900 italic leading-relaxed">
                 &ldquo;Dear Dr. Aris, I am writing to express my appreciation for yesterday&apos;s discussion regarding the research assistant position...&rdquo;
               </p>
-              <div className="flex items-center justify-between text-[11px] text-ink-500 pt-1">
+              <div className="flex items-center justify-between text-[11px] text-ink-700 pt-1">
                 <span className="inline-flex items-center gap-1 text-sage-600 font-medium">
                   <span className="w-1.5 h-1.5 rounded-full bg-sage-500" aria-hidden="true" />
                   Tone: Professional &amp; Courteous
                 </span>
-                <span className="text-ink-500 font-medium">Clarity: 98%</span>
+                <span className="text-ink-700 font-medium">Clarity: 98%</span>
               </div>
             </div>
 
             {/* Card Footer Motif */}
-            <div className="flex items-center justify-between text-xs text-ink-500 pt-1">
+            <div className="flex items-center justify-between text-xs text-ink-700 pt-1">
               <div className="flex items-center gap-2">
                 <Image
                   src="/assets/envelope.svg"
