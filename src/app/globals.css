@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper-bg: #FAF7F2;
+  --color-paper-card: #FFFFFF;
+  --color-paper-subtle: #F4EFEA;
+  --color-paper-border: #E6DFD5;
+  --color-paper-border-dark: #D4CABC;
+
+  --color-ink-900: #1C1A17;
+  --color-ink-700: #46413A;
+  --color-ink-500: #736B60;
+  --color-ink-300: #A69D90;
+
+  --color-vermillion-600: #B8351B;
+  --color-vermillion-500: #C83E23;
+  --color-vermillion-400: #E0543A;
+  --color-vermillion-100: #FDF1EE;
+  --color-vermillion-50: #FFF8F6;
+
+  --color-mustard-600: #B0740E;
+  --color-mustard-500: #C98616;
+  --color-mustard-100: #FDF5E6;
+
+  --color-sage-600: #3E5A45;
+  --color-sage-500: #4A6B53;
+  --color-sage-100: #EFF5F1;
+
+  --font-serif: var(--font-newsreader), Georgia, serif;
+  --font-sans: var(--font-plus-jakarta), system-ui, sans-serif;
+}
+
+:root {
+  --background: #FAF7F2;
+  --foreground: #1C1A17;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Editorial & Paper Custom Utilities */
+.paper-shadow {
+  box-shadow: 0 4px 20px -2px rgba(28, 26, 23, 0.05), 0 2px 6px -1px rgba(28, 26, 23, 0.03);
+}
+
+.paper-shadow-lg {
+  box-shadow: 0 12px 32px -4px rgba(28, 26, 23, 0.08), 0 4px 12px -2px rgba(28, 26, 23, 0.04);
+}
+
+.postal-stamp-border {
+  border: 1px dashed var(--color-paper-border-dark);
+}
+
+.postmark-texture {
+  background-image: radial-gradient(#D4CABC 0.75px, transparent 0.75px);
+  background-size: 12px 12px;
+}
+
+.airmail-top-stripe {
+  background-image: repeating-linear-gradient(
+    135deg,
+    #C83E23 0,
+    #C83E23 15px,
+    #FAF7F2 15px,
+    #FAF7F2 25px,
+    #4A6B53 25px,
+    #4A6B53 40px,
+    #FAF7F2 40px,
+    #FAF7F2 50px
+  );
+}
+
+/* Floating Paper Plane Keyframes */
+@keyframes paper-float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(3deg);
+  }
+}
+
+.animate-paper-float {
+  animation: paper-float 3s ease-in-out infinite;
+}
+
+/* Keyboard Focus Accessibility */
+*:focus-visible {
+  outline: 2px solid var(--color-vermillion-500) !important;
+  outline-offset: 2px !important;
+}
+
+/* Reduced Motion Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
