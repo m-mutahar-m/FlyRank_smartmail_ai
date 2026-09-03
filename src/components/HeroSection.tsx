@@ -71,7 +71,7 @@ export default function HeroSection({ onStartWriting }: HeroSectionProps) {
               <span className="text-vermillion-500 font-bold" aria-hidden="true">✓</span> Rapid Drafting
             </span>
             <span className="flex items-center gap-1.5">
-              <span className="text-[#78350f] font-bold" aria-hidden="true">✓</span> Draft Polishing
+              <span className="text-mustard-900 font-bold" aria-hidden="true">✓</span> Draft Polishing
             </span>
             <span className="flex items-center gap-1.5">
               <span className="text-sage-600 font-bold" aria-hidden="true">✓</span> Tone Audit
@@ -110,7 +110,7 @@ export default function HeroSection({ onStartWriting }: HeroSectionProps) {
               </div>
 
               {/* High Contrast Compliant Badge */}
-              <span className="px-2.5 py-1 rounded bg-[#fef3c7] text-[#78350f] text-[11px] font-bold tracking-wide uppercase border border-[#b45309]/30">
+              <span className="px-2.5 py-1 rounded bg-mustard-100 text-mustard-900 text-[11px] font-bold tracking-wide uppercase border border-mustard-500/30">
                 Draft Ready
               </span>
             </div>
