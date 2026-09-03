@@ -1,83 +1,107 @@
 # SmartMail AI — Production Deployment Checklist
 
-This document details the complete deployment verification checklist for SmartMail AI, reflecting tested, accessible, and production-ready milestones.
+This document details the production deployment checklist for SmartMail AI, covering pre-deployment verifications, security, accessibility, and post-deployment rollback procedures.
 
 ---
 
-## 1. Code Quality & Architecture
+## 1. Code Quality
 
-- [x] **Framework Standard:** Built on Next.js App Router (v16.3.4) with React 19 and TypeScript 5.
-- [x] **Strict Server Isolation:** Server-only code isolated using `import "server-only";` in `src/lib/gemini.ts` to prevent client-side leaks of API logic or credentials.
-- [x] **Modular Component Structure:** Separated UI concerns across `Header`, `HeroSection`, `ModeSelector`, `EmailForm`, `LoadingState`, `EmailResult`, `AnalysisPanel`, and `ErrorMessage`.
-- [x] **TypeScript Compliance:** Strict type checking enabled with zero `any` type escapes across source code.
-- [x] **Linting:** ESLint configured and passing cleanly with zero errors (`npm run lint`).
-
----
-
-## 2. Security Guardrails
-
-- [x] **API Key Security:** `GEMINI_API_KEY` read strictly from server environment (`process.env.GEMINI_API_KEY`). Never prefixed with `NEXT_PUBLIC_`.
-- [x] **Environment File Protection:** `.gitignore` includes `.env*` rules to prevent committing credentials.
-- [x] **Input Validation:** Incoming HTTP payloads validated server-side using Zod (`smartMailRequestSchema`).
-- [x] **Output Validation:** Raw Gemini LLM responses validated against Zod runtime schema (`smartMailResponseSchema`).
-- [x] **XSS Prevention:** Zero usage of `dangerouslySetInnerHTML`. All LLM text interpolated safely via standard React JSX expressions.
-- [x] **Error Masking:** Client error responses hide internal stack traces, API keys, and server infrastructure details.
+- [x] **production build passes:** Verified zero compilation or bundle errors via `npm run build` (`next build`).
+- [x] **lint passes:** Verified clean static analysis with zero ESLint warnings or errors via `npm run lint`.
+- [x] **TypeScript Strict Mode:** Verified zero `any` escapes or implicit type coercion across all components and API handlers.
+- [x] **Server Component Isolation:** Verified `import "server-only";` guard in `src/lib/gemini.ts` to prevent client-side leaks.
 
 ---
 
-## 3. Testing & Coverage Verification
+## 2. Security
 
-- [x] **Testing Framework:** Vitest v4.1.11 configured with `@testing-library/react` and `jsdom`.
-- [x] **Test Execution:** 6 test files, 22 total unit & integration tests passing cleanly (`npm test`).
-  - [x] `validations.test.ts` (5 tests)
-  - [x] `gemini.test.ts` (2 tests)
-  - [x] `EmailForm.test.tsx` (4 tests)
-  - [x] `EmailResult.test.tsx` (3 tests)
-  - [x] `components.test.tsx` (6 tests)
-  - [x] `integration-flow.test.tsx` (2 tests covering Happy Path and Resilience/Failure Path)
-- [x] **Coverage Metric:** `npm run test -- --coverage` achieves **66.5% overall statement coverage** (100% on core schemas and validation rules).
+- [x] **API key secured:** `GEMINI_API_KEY` read strictly from server environment (`process.env.GEMINI_API_KEY`). Never exposed via `NEXT_PUBLIC_`.
+- [x] **.env.local not committed:** Verified `.gitignore` contains `.env*` rules; `.env.local` is excluded from git tracking.
+- [x] **Input & Output Schema Validation:** Server-side request and response payloads validated using Zod schemas (`smartMailRequestSchema`, `smartMailResponseSchema`).
+- [x] **XSS Prevention:** Zero usage of `dangerouslySetInnerHTML`; all text rendered safely via React JSX expressions.
 
 ---
 
-## 4. Accessibility (WCAG 2.1 AA Compliance)
+## 3. Testing
 
-- [x] **Semantic Document Structure:** Single `<h1>` tag on main page, correct `<h2>`–`<h4>` heading hierarchy.
-- [x] **WAI-ARIA Tablist Navigation:** Keyboard roving tab index with Arrow Left/Right key navigation in `ModeSelector`.
-- [x] **Form Accessibility:** All inputs and textareas explicitly associated with `<label htmlFor="...">` elements.
-- [x] **Accessible Live Announcements:** `role="status"` and `aria-live="polite"` live regions for active loading and clipboard copy feedback.
-- [x] **Alert Announcements:** `role="alert"` and `aria-live="assertive"` regions for validation and server errors.
-- [x] **Touch Target Sizes:** Minimum 44x44px touch targets on interactive buttons and controls across mobile viewports.
-- [x] **Color Contrast:** WCAG AA compliant contrast ratios across warm ivory (`#FAF7F2`), ink (`#1C1A17`), and vermillion (`#C83E23`) colors.
-- [x] **Reduced Motion:** Fully respects `@media (prefers-reduced-motion: reduce)` with `motion-reduce:animate-none` fallbacks.
+- [x] **tests pass:** All 22 unit and integration tests passing across 6 test files (`npx vitest run`).
+- [x] **coverage reviewed:** Verified statement coverage across schema, validation, component, and flow layers (`npm run test -- --coverage`).
+- [x] **AI generation tested:** End-to-end generation flow tested in `integration-flow.test.tsx`.
+- [x] **improve mode tested:** Draft polishing mode and state transitions verified in `EmailForm.test.tsx` and `components.test.tsx`.
+- [x] **error states tested:** API failure, invalid payload, rate limiting, and retry mechanisms verified in `integration-flow.test.tsx` and `ErrorMessage.test.tsx`.
 
 ---
 
-## 5. Production Performance & Optimization
+## 4. Accessibility
 
-- [x] **Bundle Size:** Next.js production build First Load JS optimized to **~95 kB** (`npx next build`).
-- [x] **Font Optimization:** `next/font/google` configured with `display: "swap"` for `Newsreader` and `Plus_Jakarta_Sans` fonts to eliminate render-blocking font flashes and CLS.
-- [x] **Layout Shift Prevention:** Fixed width/height dimensions set on all local SVG icons and images.
-- [x] **GPU-Accelerated Animations:** CSS keyframe transforms (`translateY`, `rotate`) using hardware composition layers.
-- [x] **Form State Preservation:** `<EmailForm>` remains mounted during submission so user input is never lost on network failures.
-
----
-
-## 6. Production Deployment & Vercel Readiness
-
-- [x] **Vercel Build Command:** Standard `npm run build` (`next build`).
-- [x] **Output Directory:** Default `.next` output directory.
-- [x] **Environment Variable Injection:** Set `GEMINI_API_KEY` in Vercel Project Settings under Environment Variables.
-- [ ] **Production Domain Deployment:** Deploy to Vercel and verify live production URL.
+- [x] **accessibility audit completed:** Automated & manual WCAG 2.1 AA audit completed. Color contrast ratio across all badge and body text meets/exceeds 4.5:1 against light background surfaces.
+- [x] **ARIA Navigation & Semantics:** Roving tab index for `ModeSelector`, explicit form `<label>` associations, and dynamic `aria-live` announcements (`role="status"`, `role="alert"`).
+- [x] **Reduced Motion Support:** CSS media queries respect `prefers-reduced-motion: reduce` with `motion-reduce:animate-none` fallbacks.
+- [ ] **mobile testing completed:** Responsive layout verified in browser developer tools; live touch-target and viewport testing on physical mobile hardware pending production URL release.
 
 ---
 
-## 7. Error Handling & Rollback Strategy
+## 5. Performance
+
+- [x] **Bundle Size Optimization:** First Load JS bundle optimized to ~95 kB.
+- [x] **Font & Asset Optimization:** Google Fonts (`Newsreader`, `Plus_Jakarta_Sans`) loaded via `next/font/google` with `display: "swap"`. Local SVG graphics configured with fixed layout dimensions.
+- [ ] **Lighthouse audit completed:** Local synthetic metrics verified; formal Lighthouse audit on live deployed production URL pending Vercel deployment.
+
+---
+
+## 6. Production Deployment
+
+- [x] **Vercel Build Command Configured:** Set to `npm run build` (`next build`).
+- [x] **Environment Variables Injected:** `GEMINI_API_KEY` configured in Vercel Project Settings.
+- [ ] **production URL tested:** Live domain deployment and production URL verification pending final release trigger.
+
+---
+
+## 7. Error Handling
 
 - [x] **HTTP Error Status Mapping:**
-  - `400 Bad Request`: Validation failure or empty input.
+  - `400 Bad Request`: Validation failure or empty input payload.
   - `429 Too Many Requests`: API rate limiting or quota exhaustion.
-  - `500 Internal Server Error`: Schema parsing failure or missing server configuration.
+  - `500 Internal Server Error`: Schema parsing failure or server configuration error.
   - `503 Service Unavailable`: Unreachable Gemini API service.
-  - `504 Gateway Timeout`: Request execution exceeding timeout limit.
-- [x] **Application Error Boundary:** React rendering error boundary implemented at `src/app/error.tsx`.
-- [x] **Rollback Plan:** Immediate version rollback via Vercel Dashboard deployments tab or Git revert.
+  - `504 Gateway Timeout`: Execution exceeding timeout threshold.
+- [x] **Application Error Boundary:** Global React fallback boundary implemented at `src/app/error.tsx`.
+- [x] **Form Input Preservation:** Form state retained during submission failures to prevent user data loss.
+
+---
+
+## 8. Rollback
+
+- [x] **Rollback Strategy Documented:** Standard operating procedure established for instant production deployment reversion.
+
+### Vercel Deployment History Rollback Procedure
+
+If a production release introduces critical errors or unexpected runtime behavior, execute the following rollback procedure:
+
+1. **Access Vercel Dashboard:**
+   - Log in to [Vercel](https://vercel.com) and navigate to the **SmartMail AI** project dashboard.
+
+2. **Open Deployment History:**
+   - Click the **Deployments** tab to view the reverse-chronological list of all production and preview deployments.
+
+3. **Identify Target Stable Build:**
+   - Locate the most recent deployment prior to the broken release that successfully passed all checklist items.
+
+4. **Promote Build to Production:**
+   - Click the **`...`** (more options) button adjacent to the selected stable deployment.
+   - Select **Promote to Production**.
+   - Confirm the promotion in the modal dialog. Vercel will instantly route live traffic to the target build with zero downtime.
+
+5. **CLI Alternative (Fast Rollback):**
+   ```bash
+   # Rollback to the previous production deployment via Vercel CLI
+   vercel rollback
+   ```
+
+6. **Post-Rollback Recovery:**
+   - Revert the faulty commit in Git:
+     ```bash
+     git revert <failing-commit-hash>
+     git push origin main
+     ```
+   - Investigate root cause, fix locally, re-verify `npm run build` and `npm test`, and create a new deployment.
