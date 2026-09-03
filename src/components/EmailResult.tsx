@@ -265,7 +265,7 @@ export default function EmailResult({
         {result.suggestions && result.suggestions.length > 0 && (
           <div className="space-y-3">
             <h4 className="font-serif text-sm font-bold text-ink-900 flex items-center gap-1.5">
-              <span className="text-mustard-700" aria-hidden="true">💡</span> Actionable Suggestions
+              <span className="text-mustard-900" aria-hidden="true">💡</span> Actionable Suggestions
             </h4>
             <ul className="space-y-1.5 text-xs text-ink-700">
               {result.suggestions.map((suggestion, idx) => (
@@ -273,7 +273,7 @@ export default function EmailResult({
                   key={idx}
                   className="bg-paper-subtle p-2.5 rounded-lg border border-paper-border flex items-start gap-2"
                 >
-                  <span className="text-mustard-700 font-bold" aria-hidden="true">•</span>
+                  <span className="text-mustard-900 font-bold" aria-hidden="true">•</span>
                   <span>{suggestion}</span>
                 </li>
               ))}

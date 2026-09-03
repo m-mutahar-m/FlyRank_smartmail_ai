@@ -104,7 +104,7 @@ export default function AnalysisPanel({ analysis }: AnalysisPanelProps) {
       {analysis.suggestions && analysis.suggestions.length > 0 && (
         <div className="space-y-3 pt-2 border-t border-paper-border">
           <h4 className="font-serif text-base font-bold text-ink-900 flex items-center gap-2">
-            <span className="text-mustard-700" aria-hidden="true">💡</span> Worth Tweaking
+            <span className="text-mustard-900" aria-hidden="true">💡</span> Worth Tweaking
           </h4>
           <ul className="space-y-2 text-xs text-ink-700">
             {analysis.suggestions.map((suggestion, idx) => (
@@ -112,7 +112,7 @@ export default function AnalysisPanel({ analysis }: AnalysisPanelProps) {
                 key={idx}
                 className="bg-paper-subtle p-3 rounded-xl border border-paper-border flex items-start gap-2.5 leading-relaxed"
               >
-                <span className="text-mustard-700 font-bold shrink-0 mt-0.5" aria-hidden="true">
+                <span className="text-mustard-900 font-bold shrink-0 mt-0.5" aria-hidden="true">
                   •
                 </span>
                 <span>{suggestion}</span>
